@@ -59,6 +59,18 @@
 
 <script>
 
+var inputKey = document.querySelector(".keys");
+document.addEventListener("keydown", event => {
+var soundClip = document.querySelector('audio[data-key="'+ event.keyCode + '"]');
+soundClip.play();
+
+var keyUI = document.querySelector('div[data-key="'+ event.keyCode + '"]')
+setTimeout(() => keyUI.className = "playing key", 100);
+setTimeout(() => keyUI.className = "key",300);
+
+});
+
+
 </script>
 
 
