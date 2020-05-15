@@ -14,7 +14,44 @@
     </div>
   </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <script>
+
+  
+    const speedBar = document.querySelector('.speed');
+    const speedHover = document.querySelector('.speed-bar');
+    const videoPlayer = document.querySelector("video");
+    console.log(videoPlayer)
+    
+    const topElem = speedBar.getBoundingClientRect().top;
+    const bottomElem = speedBar.getBoundingClientRect().bottom;
+
+    speedBar.addEventListener('mousemove', speedAdjust);
+    
+    //console.log(topElem + ',' + bottomElem);
+
+    videoPlayer.addEventListener('click',playPause);
+    let videoState = false;
+
+    function playPause(){
+      if(videoState)
+        videoPlayer.play();
+      else 
+        videoPlayer.pause();
+      videoState = !videoState;
+    }
+
+
+  function speedAdjust(){
+    const speedPer = (event.pageY - topElem)/(bottomElem - topElem);
+    speedHover.style.height = `${speedPer *100 }%`;
+    const playBackRate = (speedPer * 4).toFixed(2);
+    speedHover.innerText = playBackRate + 'x';
+    videoPlayer.playbackRate = parseInt(playBackRate);
+    //console.log(speedPer);
+  }
+
 </script>
 </body>
 </html>

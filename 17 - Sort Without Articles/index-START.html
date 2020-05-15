@@ -48,6 +48,49 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+/* Approach 1 - 1) create a new array after removing Articles 2) sort new array 3) using this re-sort main array
+
+var cleanedBands = bands.map(elem => {
+  const articles = ['The','An', 'A'];
+  var matchArticle = articles.find(e => e === elem.split(" ")[0]);
+  if(matchArticle){
+    return elem.replace(matchArticle + ' ','');
+  }
+  else {
+    return elem;
+  }
+});
+
+cleanedBands.sort();
+var output = [];
+
+cleanedBands.forEach((elem,index) =>{
+  output[index]= bands.filter(e => e.includes(elem))[0];
+})
+
+console.log(output);
+
+*/
+
+
+//Approach 2 - Use array sort with compared characters between band names being the first characters after removing articles
+
+bands.sort((a,b)=>{
+  return compareChar(a) < compareChar(b) ? -1 : 1; 
+});
+
+console.log(bands);
+
+function compareChar(name){
+  const articles = ['The','An', 'A'];
+  var matchArticle = articles.find(e => e === name.split(" ")[0]);
+  if(matchArticle){
+    return name.split(" ")[1].charAt(0);
+  }
+  else {
+    return name.charAt(0);
+  }
+}
 
 </script>
 

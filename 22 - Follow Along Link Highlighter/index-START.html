@@ -27,6 +27,15 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+
+  const pageLinks = document.querySelectorAll("a");
+  pageLinks.forEach((e) => e.addEventListener('mouseover', highlightIt));
+  
+  function highlightIt(){
+    console.log('yes');
+  }
+  //console.log(pageLinks);
+
   </script>
 </body>
 </html>

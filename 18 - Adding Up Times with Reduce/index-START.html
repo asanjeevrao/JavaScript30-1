@@ -182,6 +182,20 @@
     </li>
   </ul>
 <script>
+const videos = Array.prototype.slice.call(document.querySelectorAll('li'));
+var total = videos.reduce((sum,e) => {
+   var time = e.getAttribute('data-time');
+   var minutes = parseInt(time.split(':')[0])
+   var seconds = parseInt(time.split(':')[1])
+   return sum + minutes*60 + seconds;
+},0)
+
+var hours = Math.floor(total/3600);
+var minutes = Math.floor((total%3600)/60);
+var seconds = total % 60;
+console.log(`${hours}h ${minutes}min ${seconds} sec`);
+
+
 </script>
 </body>
 </html>

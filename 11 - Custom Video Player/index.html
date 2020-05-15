@@ -22,6 +22,52 @@
      </div>
    </div>
 
-  <script src="scripts.js"></script>
+  <script>
+  
+  const videoPlayer = document.querySelector('div > video');
+
+  //Rewind 
+  const rewindButton = document.querySelector('button[data-skip="-10"]');
+  rewindButton.addEventListener('click',() => videoPlayer.currentTime -= 10);  
+
+  //Forward 
+  const forwardButton = document.querySelector('button[data-skip="25"]');
+  forwardButton.addEventListener('click',() => videoPlayer.currentTime += 25);  
+
+  //Play & Pause
+  const playButton = document.querySelector('button.toggle');
+  playButton.addEventListener('click', playControls);
+
+  function playControls(event){
+    if(this.innerHTML === '►'){
+        videoPlayer.play();
+        this.innerHTML = '❚ ❚'
+    }
+    else {
+        videoPlayer.pause();
+        this.innerHTML = '►'
+    }
+  }
+
+  //Volume Control
+  const volControl = document.querySelector('input[name = "volume"]');
+  volControl.addEventListener('change', () => videoPlayer.volume = volControl.value);
+
+  //Speed Control
+  const speedControl = document.querySelector('input[name = "playbackRate"]');
+  speedControl.addEventListener('change', () => videoPlayer.playbackRate = speedControl.value);
+
+  //TimingControl
+  const timeControl = document.querySelector('body > div > div > div > div');
+  var position = timeControl.getBoundingClientRect();
+  var x = position.left;
+ console.log(x);
+
+  //console.log(timeControl)
+  timeControl.addEventListener('click', () => console.log(event));
+
+
+  //body > div > div > button.player__button.toggle
+  </script>
 </body>
 </html>

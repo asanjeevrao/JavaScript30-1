@@ -96,6 +96,35 @@
   </div>
 
 <script>
+
+const checkbox = document.querySelectorAll("input");
+var shiftPressed = false;
+
+document.addEventListener("keydown", e => shiftPressed = e.keyCode=== 16 ? true : false);
+document.addEventListener("keyup", () => shiftPressed = false);
+
+var lastUpdatedBox = checkbox.length -1 ;
+checkbox.forEach((e,index) => e.addEventListener('change', () => {
+
+  if(shiftPressed){
+    var start = Math.min(index, lastUpdatedBox);
+    var end = Math.max(index,lastUpdatedBox);
+
+    checkbox.forEach((elem, i) => {
+      if(i >= start && i <= end) 
+        elem.checked = true;
+    })
+    
+   // for(var i = start; i <= end; i++){
+   //   checkbox[i].checked = true; 
+  // }
+  }
+  lastUpdatedBox = index;
+  
+  }));
+
+  function makeChanges(event){
+      }
 </script>
 </body>
 </html>
